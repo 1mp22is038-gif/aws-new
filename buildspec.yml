@@ -33,7 +33,7 @@ phases:
         aws ssm send-command \
           --document-name "AWS-RunShellScript" \
           --instance-ids "i-00ae9e38be5269310" \
-          --parameters 'commands=["sudo -u ubuntu -i bash /home/ubuntu/aws-new/scripts/application_start.sh"]' \
+          --parameters 'commands=["sudo -u ubuntu -i bash -c \"cd /home/ubuntu/aws-new && git fetch origin master && git reset --hard origin/master && bash scripts/application_start.sh\""]' \
           --region ap-south-1
 
 artifacts:
