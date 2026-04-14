@@ -7,7 +7,8 @@ cd $PROJECT_DIR
 
 # 1. Pull latest code from GitHub
 echo "Syncing with GitHub..."
-git pull origin main || echo "Git pull failed, using current files."
+git fetch origin master
+git reset --hard origin/master || echo "Git sync failed, using current files."
 
 # 2. Update Backend
 cd Backend
