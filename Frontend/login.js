@@ -89,25 +89,3 @@ document.getElementById("register-form").addEventListener("submit", async (e) =>
         showToast(err.message, "error");
     }
 });
-
-// 3. OTP Verification Handler
-document.getElementById("otp-form").addEventListener("submit", async (e) => {
-    e.preventDefault();
-    const otp = document.getElementById("verify-otp").value;
-
-    try {
-        const res = await fetch(`${API}/auth/verify`, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ email: registeredEmail, otp })
-        });
-        const data = await res.json();
-        if (!res.ok) throw new Error(data.error);
-
-        showToast("Verified! Please Login.", "success");
-        document.getElementById("login-email").value = registeredEmail;
-        showBox("login-box");
-    } catch (err) {
-        showToast(err.message, "error");
-    }
-});

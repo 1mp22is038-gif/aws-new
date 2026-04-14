@@ -12,8 +12,6 @@ const initializeDatabase = async () => {
                 "email" VARCHAR(255) UNIQUE NOT NULL,
                 "password" VARCHAR(255) NOT NULL,
                 "isVerified" BOOLEAN DEFAULT false,
-                "otp" VARCHAR(255),
-                "otpExpiresAt" TIMESTAMP,
                 "createdAt" TIMESTAMP DEFAULT CURRENT_TIMESTAMP
             );
         `);
