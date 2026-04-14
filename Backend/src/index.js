@@ -15,7 +15,12 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 // CORS Configuration
-const allowedOrigins = ['https://prajwalgowda.online', 'http://localhost:3000'];
+const allowedOrigins = [
+    'https://prajwalgowda.online',
+    'https://www.prajwalgowda.online',
+    'http://prajwalgowda.online',
+    'http://localhost:3000'
+];
 
 const corsOptions = {
     origin: (origin, callback) => {
