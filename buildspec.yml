@@ -1,0 +1,41 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      nodejs: 18
+    commands:
+      - echo "Checking environment..."
+      - aws --version
+      - ls -la
+
+  pre_build:
+    commands:
+      - echo "Installing backend dependencies..."
+      - cd Backend && npm install
+      - cd ..
+
+  build:
+    commands:
+      - echo "Building frontend..."
+      - cd Frontend
+      - npm install
+      - npm run build
+      - cd ..
+
+  post_build:
+    commands:
+      - echo "Deploying Frontend to S3..."
+      - aws s3 sync Frontend/dist/ s3://frontend-static-website1 --delete
+      
+      - echo "Deploying Backend via SSM..."
+      - |
+        aws ssm send-command \
+          --document-name "AWS-RunShellScript" \
+          --instance-ids "i-00ae9e38be5269310" \
+          --parameters 'commands=["sudo -u ubuntu -i bash /home/ubuntu/aws-new/scripts/application_start.sh"]' \
+          --region ap-south-1
+
+artifacts:
+  files:
+    - '**/*'

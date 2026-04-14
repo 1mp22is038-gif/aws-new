@@ -1,0 +1,10 @@
+{
+  "name": "frontend",
+  "version": "1.0.0",
+  "scripts": {
+    "build": "mkdir -p dist && cp index.html script.js style.css login.html login.js config.js dist/"
+  },
+  "dependencies": {
+    "jsdom": "^29.0.1"
+  }
+}

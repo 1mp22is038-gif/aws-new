@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StellarCart | Premium Tech</title>
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .logout-btn {
+            position: absolute; top: 20px; right: 20px;
+            background: rgba(220, 38, 38, 0.1); color: #f87171;
+            border: 1px solid rgba(220, 38, 38, 0.2); border-radius: 8px;
+            padding: 0.5rem 1rem; cursor: pointer; font-size: 0.85rem;
+            transition: all 0.3s ease; z-index: 1000;
+        }
+        .logout-btn:hover { background: #ef4444; color: white; }
+
+        .orders-btn {
+            position: absolute; top: 20px; left: 20px;
+            background: rgba(99, 102, 241, 0.1); color: #818cf8;
+            border: 1px solid rgba(99, 102, 241, 0.2); border-radius: 8px;
+            padding: 0.5rem 1rem; cursor: pointer; font-size: 0.85rem;
+            transition: all 0.3s ease; z-index: 1000;
+        }
+        .orders-btn:hover { background: #6366f1; color: white; }
+    </style>
+</head>
+<body>
+
+    <!-- Animated Background -->
+    <div class="background-shapes">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
+    </div>
+
+    <!-- Main Shopping Area -->
+    <main class="container hidden" id="app-content">
+        
+        <header class="app-header">
+            <button class="logout-btn" onclick="localStorage.removeItem('token'); location.reload();">Log Out</button>
+            <button class="orders-btn" onclick="toggleOrders()">📦 Orders</button>
+            <h1>Stellar<span>Cart</span></h1>
+            <p>Elevate your tech lifestyle.</p>
+        </header>
+
+        <!-- Product Listing Section -->
+        <section class="section" id="products-section">
+            <div class="section-header">
+                <h2>Featured Products</h2>
+                <div class="loader" id="products-loader"></div>
+            </div>
+            <div id="products-grid" class="grid-container">
+                <!-- Dynamic products will be injected here -->
+            </div>
+        </section>
+
+        <!-- Floating Cart Icon -->
+        <div id="floating-cart" class="floating-cart" onclick="toggleCart()">
+            🛒 <span id="cart-badge" class="cart-badge">0</span>
+        </div>
+
+        <!-- Cart Panel (Glassmorphism) -->
+        <div id="cart-overlay" class="cart-overlay" onclick="toggleCart()"></div>
+        <aside id="cart-panel" class="cart-panel glass-panel">
+            <div class="cart-header">
+                <h2>Your Cart</h2>
+                <button class="close-btn" onclick="toggleCart()">&times;</button>
+            </div>
+            <div id="cart-items" class="cart-items">
+                <!-- Dynamic cart items -->
+                <p class="empty-cart-msg">Your cart is empty.</p>
+            </div>
+            <div class="cart-footer">
+                <div class="cart-total">
+                    <span>Total:</span>
+                    <span id="cart-total-price">₹0</span>
+                </div>
+                <button id="checkout-btn" class="primary-btn" onclick="checkout()">
+                    <span class="btn-text">Checkout</span>
+                    <span class="btn-loader loader hidden"></span>
+                </button>
+            </div>
+        </aside>
+
+        <!-- Orders Panel -->
+        <div id="orders-overlay" class="cart-overlay" onclick="toggleOrders()"></div>
+        <aside id="orders-panel" class="cart-panel glass-panel">
+            <div class="cart-header">
+                <h2>Your Orders</h2>
+                <button class="close-btn" onclick="toggleOrders()">&times;</button>
+            </div>
+            <div id="orders-items" class="cart-items">
+                <!-- Dynamic order items -->
+                <p class="empty-cart-msg">No orders placed yet.</p>
+            </div>
+        </aside>
+        
+        <!-- Toast Notification -->
+        <div id="toast" class="toast hidden">
+            <p id="toast-msg">Success!</p>
+        </div>
+
+    </main>
+
+    <script src="config.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

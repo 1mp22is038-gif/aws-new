@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | StellarCart</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body { 
+            display: flex; justify-content: center; align-items: center; 
+            height: 100vh; overflow: hidden; background: #0f172a;
+            color: white; font-family: 'Inter', sans-serif;
+        }
+        .container {
+            width: 100%; max-width: 400px;
+            background: #1e293b;
+            padding: 2.5rem 2rem;
+            border-radius: 12px;
+            border: 1px solid #334155;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            text-align: center;
+        }
+        .container h1 { margin-bottom: 2rem; color: #6366f1; }
+        .form-group { margin-bottom: 1rem; text-align: left; }
+        .form-group label { display: block; margin-bottom: 0.5rem; font-size: 0.9rem; color: #94a3b8; }
+        .form-group input { 
+            width: 100%; padding: 0.8rem; 
+            background: #0f172a; border: 1px solid #334155;
+            border-radius: 8px; color: white;
+        }
+        .btn {
+            width: 100%; padding: 0.8rem; background: #4f46e5;
+            color: white; border: none; border-radius: 8px;
+            font-weight: 600; cursor: pointer; margin-top: 1rem;
+        }
+        .btn:hover { background: #4338ca; }
+        .link {
+            color: #94a3b8; text-decoration: underline;
+            cursor: pointer; background: none; border: none;
+            margin-top: 1rem; font-size: 0.9rem;
+        }
+        .hidden { display: none !important; }
+        .toast {
+            position: fixed; bottom: 20px; right: 20px;
+            background: #10b981; color: white; padding: 1rem;
+            border-radius: 8px; display: none;
+        }
+        .toast.error { background: #ef4444; }
+        .toast.show { display: block; }
+    </style>
+</head>
+<body>
+
+    <div class="container" id="login-box">
+        <h1>Welcome Back</h1>
+        <form id="login-form">
+            <div class="form-group">
+                <label>Email</label>
+                <input type="email" id="login-email" required>
+            </div>
+            <div class="form-group">
+                <label>Password</label>
+                <input type="password" id="login-password" required>
+            </div>
+            <button type="submit" class="btn">Login</button>
+        </form>
+        <button type="button" class="btn" style="background: transparent; border: 1px solid var(--primary); margin-top: 0.5rem;" onclick="showBox('register-box')">Create New Account</button>
+    </div>
+
+    <div class="container hidden" id="register-box">
+        <h1>Create Account</h1>
+        <form id="register-form">
+            <div class="form-group">
+                <label>Full Name</label>
+                <input type="text" id="reg-name" required>
+            </div>
+            <div class="form-group">
+                <label>Phone</label>
+                <input type="tel" id="reg-phone" required>
+            </div>
+            <div class="form-group">
+                <label>Email</label>
+                <input type="email" id="reg-email" required>
+            </div>
+            <div class="form-group">
+                <label>Password</label>
+                <input type="password" id="reg-password" required>
+            </div>
+            <button type="submit" class="btn">Sign Up</button>
+        </form>
+        <button type="button" class="btn" style="background: transparent; border: 1px solid var(--primary); margin-top: 0.5rem;" onclick="showBox('login-box')">Back to Login</button>
+    </div>
+
+    <div class="container hidden" id="otp-box">
+        <h1>Verify Email</h1>
+        <p style="color:#a8b2d1; margin-bottom:1rem; font-size: 0.9rem;">Check your screen/console for the OTP.</p>
+        <form id="otp-form">
+            <div class="form-group">
+                <label>6-Digit OTP</label>
+                <input type="text" id="verify-otp" required maxlength="6">
+            </div>
+            <button type="submit" class="btn">Verify Account</button>
+        </form>
+    </div>
+
+    <div id="toast" class="toast"></div>
+
+    <script src="config.js"></script>
+    <script src="login.js"></script>
+</body>
+</html>
