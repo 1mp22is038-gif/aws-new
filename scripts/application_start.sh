@@ -1,7 +1,7 @@
 #!/bin/bash
 # Configuration
 PROJECT_DIR="/home/ubuntu/aws-new"
-LOG_FILE="/var/log/deploy-debug.log"
+LOG_FILE="/home/ubuntu/deploy-debug.log"
 
 # Function to log both to console and file
 log() {
