@@ -49,6 +49,27 @@ app.get('/health', (req, res) => {
     res.status(200).send('OK');
 });
 
+// Explicit DB Connectivity Test
+app.get('/db-test', async (req, res) => {
+    try {
+        const start = Date.now();
+        const { rows } = await db.query('SELECT 1 as result');
+        const duration = Date.now() - start;
+        res.status(200).json({ 
+            status: 'Database Connected', 
+            result: rows[0].result,
+            latency: `${duration}ms`
+        });
+    } catch (err) {
+        console.error('[DB-TEST-ERROR]', err.message);
+        res.status(500).json({ 
+            status: 'Database Connection Failed', 
+            error: err.message,
+            stack: process.env.NODE_ENV === 'development' ? err.stack : undefined
+        });
+    }
+});
+
 // Centralized Error Handling
 app.use(errorHandler);
 
